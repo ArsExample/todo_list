@@ -1,11 +1,13 @@
 import express from "express";
 import mongoose from "mongoose"
+import "dotenv/config"
 
 import {registerValidation} from "./validations/auth.js"
 import checkAuth from "./middlewares/checkAuth.js";
 import * as UserController from "./controllers/UserController.js"
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.b491zih.mongodb.net/todo_list").then(() => {
+
+mongoose.connect(process.env.DATABASE).then(() => {
     console.log("DB connected")
 }).catch((err) => console.log("DB error:", err));
 

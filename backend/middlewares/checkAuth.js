@@ -5,7 +5,7 @@
 
     if (token){
         try {
-            const decoded = jwt.verify(token, "rayman");
+            const decoded = jwt.verify(token, process.env.SECRET);
 
             req.userId = decoded._id;
             next();
