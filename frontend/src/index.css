@@ -3,3 +3,13 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+.form{
+  font-size: 20px;
+  width: 100%;
+  display: block;
+  padding: 5px;
+  height: 10rem;
+  resize: none;
+  margin-top: 15px;
+}

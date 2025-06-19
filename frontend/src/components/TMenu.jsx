@@ -9,20 +9,10 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
-const items = [
-  {
-    key: 'sub1',
-    label: 'Navigation One',
-    icon: <MailOutlined />,
-    children: [
-      { key: '1', label: '' },
-      { key: '2', label: '' },
-      { key: '3', label: '' },
-      { key: '4', label: '' },
-    ],
-  }
-];
-const TMenu = () => {
+
+const TMenu = (props) => {
+  const tlists = props.t
+  console.log(props.t)
   const [collapsed, setCollapsed] = useState(false); 
   const toggleCollapsed = () => {
     setCollapsed(collapsed);
@@ -38,7 +28,14 @@ const TMenu = () => {
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
-        items={items}
+        items={[
+  {
+    key: 'sub1',
+    label: 'Navigation One',
+    icon: <MailOutlined />,
+    children: tlists?.map(c => {return {label: c.name, key: c._id}}),
+  }
+]}
       />
     </div>
   );
