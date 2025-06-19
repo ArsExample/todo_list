@@ -13,6 +13,21 @@ export const getAll = async (req, res) => {
     }
 };
 
+export const testGetAll = async (req, res) => {
+    try {
+        const tlists = await TListModel.find({});
+
+        res.json(tlists);
+
+        
+    } catch (err){
+        console.log(err);
+        res.status(500).json({
+            message: "An error has occured while trying to get TodoLists",
+        });
+    }
+};
+
 export const getOne = async (req, res) => {
     try{
         const todoListId = req.params.id;

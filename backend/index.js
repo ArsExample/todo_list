@@ -24,6 +24,8 @@ app.get("/tlists", checkAuth, TListController.getAll);
 app.post("/tlists", checkAuth, Validations.tListCreateValidation, TListController.create);
 app.get("/tlists/:id", checkAuth, TListController.getOne);
 
+app.get("/testlists", TListController.testGetAll)
+
 app.listen(4444, (err) => {
     if (err) {
         return console.log(err);
