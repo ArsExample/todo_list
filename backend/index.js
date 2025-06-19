@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose"
 import "dotenv/config"
+import cors from "cors"
 
 import * as Validations from "./validations.js"
 import checkAuth from "./middlewares/checkAuth.js";
@@ -15,6 +16,7 @@ mongoose.connect(process.env.DATABASE).then(() => {
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/auth/login", Validations.loginValidation, UserController.login);
 app.post("/auth/register", Validations.registerValidation, UserController.register);
