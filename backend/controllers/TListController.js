@@ -55,6 +55,37 @@ export const getOne = async (req, res) => {
     }
 };
 
+export const removeOne = async (req, res) => {
+    try{
+        const todoListId = req.params.id;
+
+        TListModel.findOneAndDelete({_id: todoListId}).then((err, doc) => {
+            if (err){
+                console.log("error: ", err);
+                return res.status(500).json({
+                    message: "TodoList delete error"
+                });
+            }
+
+            if (!doc){
+                return res.status(404).json({
+                    message: "TodoList not found"
+                });
+            }
+
+            res.json({
+                success: true,
+            });
+        });
+        
+    } catch (err){
+        console.log(err);
+        res.status(500).json({
+            message: "TodoList get error",
+        });
+    }
+};
+
 export const create = async (req, res) => {
     try{
         const doc = new TListModel({
