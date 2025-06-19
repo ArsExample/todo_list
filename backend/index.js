@@ -25,6 +25,7 @@ app.get("/auth/me", checkAuth, UserController.getMe);
 app.get("/tlists", checkAuth, TListController.getAll);
 app.post("/tlists", checkAuth, Validations.tListCreateValidation, TListController.create);
 app.get("/tlists/:id", checkAuth, TListController.getOne);
+app.delete("/tlists/:id", TListController.removeOne);
 
 app.get("/testlists", TListController.testGetAll)
 
