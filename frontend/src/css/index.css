@@ -1,0 +1,36 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body{
+  background-color: #151515;
+  color: #fff;
+}
+
+.reg {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 40%;
+}
+
+.RegBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.form_auth_block{
+  width: 300px;
+  height: 670px;  
+  margin: 100;
+  background: lch(14.2% 0 296.81);
+  background-size: cover;
+  border-radius: 40px;
+}
+
+.reg_color {
+  color: white;
+  font-style: normal;
+}

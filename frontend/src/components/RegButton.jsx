@@ -22,7 +22,7 @@ const RegButton = () => {
   return (
     <Flex gap="small" vertical>
       <Flex gap="small" wrap>
-        
+          
       </Flex>
     </Flex>
   );
