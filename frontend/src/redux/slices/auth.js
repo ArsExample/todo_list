@@ -6,7 +6,7 @@ export const fetchAuth = createAsyncThunk("auth/fetchUserData", async (params) =
     return data;
 });
 
-export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async (params) => {  // по токену лутаем данные о пользователе
+export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {  // по токену лутаем данные о пользователе
     const {data} = await axios.get("/auth/me");
     return data;
 });
@@ -48,6 +48,6 @@ const authSlice = createSlice({
     }
 });
 
-export const selectIsAuth = state => Boolean(state.auth.data);
+export const selectIsAuth = state => Boolean(state.auth.data);  // селектор который возвращает авторизован ли пользователь
 
 export const authReducer = authSlice.reducer;

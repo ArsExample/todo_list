@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"
 import axios from '../axios'
 import {
   AppstoreOutlined,
@@ -11,16 +12,21 @@ import {
 } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
 
+import { fetchTlists } from '../redux/slices/tlists';
+
+
 const TMenu = (props) => {
-  const [tLists, settLists] = useState([{_id: '6852b675273045cfd2a992ea', name: 'first list', creator: '6851fa22ad3cc7bf69c614f8', createdAt: '2025-06-18T12:52:05.045Z', updatedAt: '2025-06-18T12:52:05.045Z'}])
+  // если вылез этот элемент (все сломалось), то либо крашнулся бэк, либо 403 ошибка (пользователь не авторизован), но проверка должна быть в самой странице а не компоненте
+  //const [tLists, settLists] = useState([{_id: '1', name: 'ура все нахуй сломалось', creator: '1', createdAt: '2025-06-18T12:52:05.045Z', updatedAt: '2025-06-18T12:52:05.045Z'}])
+  //console.log(tLists.t)
+  const dispatch = useDispatch();
+  const tlistsData = useSelector((state) => state.tlists.data);
 
   useEffect(() => {
-    axios.get("/testlists").then(res => {
-      settLists(res.data)
-    })
+    dispatch(fetchTlists());  // отлавливать 403 ошибку нужно не тут (это надеюсь компонент), а в самой странице по useSelector(selectIsAuth)
   }, [])
 
-  console.log(tLists.t)
+
   const [collapsed, setCollapsed] = useState(false); 
   const toggleCollapsed = () => {
     setCollapsed(collapsed);
@@ -39,9 +45,9 @@ const TMenu = (props) => {
         items={[
   {
     key: 'sub1',
-    label: 'Navigation One',
+    label: 'Списки дел',
     icon: <MailOutlined />,
-    children: tLists?.map(c => {return {label: c.name, key: c._id}}),
+    children: tlistsData?.map(c => {return {label: c.name, key: c._id}}),
   }
 ]}
       />

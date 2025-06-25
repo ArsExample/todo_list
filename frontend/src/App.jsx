@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
-  useEffect(() => {
+  useEffect(() => { // при первом рендере получаем информацию об авторизованном пользователе
     dispatch(fetchAuthMe());
   }, []);
 
