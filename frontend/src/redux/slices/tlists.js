@@ -18,16 +18,16 @@ const tlistsSlice = createSlice({
     initialState,
     extraReducers: builder => {
         builder.addCase(fetchTlists.pending, (state) => {
-            state.status = "loading"
-            state.data = null;
+            state.tlists.status = "loading"
+            state.items = null; // мб лучше [] (?)
         });
         builder.addCase(fetchTlists.fulfilled, (state, action) => {
-            state.status = "loaded"
-            state.data = action.payload;
+            state.tlists.status = "loaded"
+            state.items = action.payload;
         });
         builder.addCase(fetchTlists.rejected, (state) => {
-            state.status = "error"
-            state.data = null;
+            state.tlists.status = "error"
+            state.items = null;
         });
     }
 });

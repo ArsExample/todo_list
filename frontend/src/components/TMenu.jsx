@@ -20,7 +20,7 @@ const TMenu = (props) => {
   //const [tLists, settLists] = useState([{_id: '1', name: 'ура все нахуй сломалось', creator: '1', createdAt: '2025-06-18T12:52:05.045Z', updatedAt: '2025-06-18T12:52:05.045Z'}])
   //console.log(tLists.t)
   const dispatch = useDispatch();
-  const tlistsData = useSelector((state) => state.tlists.data);
+  const tlistsData = useSelector((state) => state.tlists.items);
 
   useEffect(() => {
     dispatch(fetchTlists());  // отлавливать 403 ошибку нужно не тут (это надеюсь компонент), а в самой странице по useSelector(selectIsAuth)
@@ -47,7 +47,7 @@ const TMenu = (props) => {
     key: 'sub1',
     label: 'Списки дел',
     icon: <MailOutlined />,
-    children: tlistsData?.map(c => {return {label: c.name, key: c._id}}),
+    children: tlistsData?.map(c => {return {label: c.name, key: c._id}}), // или какую нибудь переменную isTlistsLoading и либо 5 андефайндов в массиве либо это
   }
 ]}
       />

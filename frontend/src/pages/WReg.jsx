@@ -1,22 +1,52 @@
 import React from 'react';
 import { Button, Form, Input, Select, Space } from 'antd';
+import {useDispatch, useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
+
+import { fetchRegistration, selectIsAuth } from "../redux/slices/auth";
+
 import '../css/index.css'
+
+
 const { Option } = Select;
+
 const layout = {
   labelCol: { span: 2 },
   wrapperCol: { span: 25 },
 };
+
 const tailLayout = {
   wrapperCol: { offset: 0, span: 16 },
 };
+
+
 const WReg = () => {
   const [form] = Form.useForm();
-  const onFinish = values => {
-    console.log(values);
+
+  const isAuth = useSelector(selectIsAuth); // все пояснения в логине посмотри, там аналогично
+  const dispatch = useDispatch(); 
+
+  const onFinish = async (values) => {
+    // console.log(values);
+    const data = await dispatch(fetchRegistration(values));
+
+    if (!data.payload) {
+      alert("Не удалось зарегестрироваться");
+    }
+
+    if ("token" in data.payload){
+      window.localStorage.setItem("token", data.payload.token);
+    }
   };
+
   const onReset = () => {
     form.resetFields();
   };
+
+  if (isAuth){  // если зареган - переправляем нав страницу с TODO листами
+    return <Navigate to="/tmenu"/>;
+  }
+
   return (
     <>
       <div className="form_auth_block">
@@ -30,7 +60,7 @@ const WReg = () => {
           style={{ maxWidth: 1000 }}
           >
           <h1 className='reg_color'>Welcome!</h1>
-          <Form.Item name="UserName" rules={[{ required: true }]}>
+          <Form.Item name="username" rules={[{ required: true }]}>
               <Input placeholder='UserName'/>
           </Form.Item>
           <Form.Item name="email" rules={[{ required: true }]}>

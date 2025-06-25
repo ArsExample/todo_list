@@ -6,6 +6,11 @@ export const fetchAuth = createAsyncThunk("auth/fetchUserData", async (params) =
     return data;
 });
 
+export const fetchRegistration = createAsyncThunk("auth/fetchRegData", async (params) => {  // регистрация
+    const {data} = await axios.post("/auth/register", params);
+    return data;
+});
+
 export const fetchAuthMe = createAsyncThunk("auth/fetchAuthMe", async () => {  // по токену лутаем данные о пользователе
     const {data} = await axios.get("/auth/me");
     return data;
@@ -45,6 +50,20 @@ const authSlice = createSlice({
             state.status = "error"
             state.data = null;
         });
+
+        builder.addCase(fetchRegistration.pending, (state) => {
+            state.status = "loading"
+            state.data = null;
+        });
+        builder.addCase(fetchRegistration.fulfilled, (state, action) => {
+            state.status = "loaded"
+            state.data = action.payload;
+        });
+        builder.addCase(fetchRegistration.rejected, (state) => {
+            state.status = "error"
+            state.data = null;
+        });
+
     }
 });
 
