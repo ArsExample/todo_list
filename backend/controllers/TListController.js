@@ -1,4 +1,5 @@
 import TListModel from "../models/TList.js"
+import TaskModel from "../models/Task.js"
 
 export const getAll = async (req, res) => {
     try {
@@ -31,7 +32,7 @@ export const testGetAll = async (req, res) => {
 export const getOne = async (req, res) => {
     try{
         const todoListId = req.params.id;
-        const tlist = await TListModel.findById(todoListId);
+        const tlist = await TListModel.findById(todoListId).populate("tasks");
 
         if (!tlist){
             return res.status(404).json({
@@ -91,6 +92,7 @@ export const create = async (req, res) => {
         const doc = new TListModel({
             name: req.body.name,
             creator: req.userId,
+            tasks: [],
         });
 
         const tList = await doc.save();
@@ -100,6 +102,42 @@ export const create = async (req, res) => {
         console.log(err);
         res.status(500).json({
             message: "TodoList creation error",
+        });
+    }
+};
+
+export const createTask = async (req, res) => { // пиздец че тут происходит
+    try{
+        const todoListId = req.params.id;
+        var tlist = await TListModel.findById(todoListId);
+
+        const doc = new TaskModel({
+            name: req.body.task_name,
+            completed: req.body.task_completed,
+        });
+
+        
+
+        const task = await doc.save();
+
+
+        tlist.tasks.push(task);
+        tlist = await tlist.save(); 
+
+        // await TListModel.updateOne({
+        //     _id: todoListId,
+        // },
+        // {
+        //     name: req.body.name,
+        //     creator: req.userId,
+        //     tasks: req.tasks,
+        // });
+
+        res.json({tlist});
+    } catch (err){
+        console.log(err);
+        res.status(500).json({
+            message: "task create error",
         });
     }
 };
