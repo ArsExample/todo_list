@@ -111,6 +111,12 @@ export const createTask = async (req, res) => { // пиздец че тут пр
         const todoListId = req.params.id;
         var tlist = await TListModel.findById(todoListId);
 
+        if (!tlist){
+            return res.status(404).json({
+                message: "tlist not found",
+            });
+        }
+
         const doc = new TaskModel({
             name: req.body.task_name,
             completed: req.body.task_completed,
@@ -138,6 +144,36 @@ export const createTask = async (req, res) => { // пиздец че тут пр
         console.log(err);
         res.status(500).json({
             message: "task create error",
+        });
+    }
+};
+
+export const patchTask = async (req, res) => { // ну сука пж научите меня программировать я не могу
+    try{
+        const todoListId = req.params.id;  // я хуй знает мб это и не надо
+        const taskId = req.params.taskid;
+        //var tlist = await TListModel.findById(todoListId);
+        // парни только не упадите
+        var _task = await TaskModel.findById(taskId);
+
+        if (!_task){
+            return res.status(404).json({
+                message: "task not found",
+            });
+        }
+
+        // я уверен что это делается через Model.updateOne или че то такое но я никогда больше noSQL юзать не буду
+        _task.name = req.body.task_name;
+        _task.completed = req.body.task_completed;
+
+
+        const task = await _task.save();
+
+        res.json({task});  // я правда не ебу че возвращать я просто хочу спать
+    } catch (err){
+        console.log(err);
+        res.status(500).json({
+            message: "task patch error",
         });
     }
 };
