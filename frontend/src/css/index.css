@@ -34,3 +34,19 @@ body{
   color: white;
   font-style: normal;
 }
+
+.header{
+  position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    height: 40px;
+    background-color: rgb(115, 115, 115);
+}
+
+.link{
+  color: rgb(58, 4, 255);
+}

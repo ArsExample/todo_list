@@ -1,7 +1,7 @@
 .menu2 {
     position: absolute;
     left: 240px;  
-    top: 0;
+    top: 40px;
     display: flex;
     align-items: center;
     width: 100%;

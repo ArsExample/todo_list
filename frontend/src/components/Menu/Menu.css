@@ -1,7 +1,7 @@
 .menu {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 40px;
     display: flex;
     align-items: center;
     width: 160px;
@@ -21,7 +21,7 @@
 
 .menu__nav{
     position: fixed;
-    top: 0;
+    top: 10;
     left: 0;
     display: flex;
     flex-direction: column;
