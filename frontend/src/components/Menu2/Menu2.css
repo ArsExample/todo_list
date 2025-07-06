@@ -1,0 +1,43 @@
+.menu2 {
+    position: absolute;
+    left: 240px;  
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    height: 100%;
+    background-color: rgb(42, 42, 42);
+}
+
+.b1{
+    position: fixed;
+    top: 0;
+    left: 240px;  
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.b2{
+    flex: 1;
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.b3{
+    margin: 20px 0;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    color: white;
+}
+
+.b3:hover{
+    color: rgb(175, 175, 175);
+    transition: 0.2s;
+}

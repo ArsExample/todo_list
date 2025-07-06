@@ -44,7 +44,7 @@ const WReg = () => {
   };
 
   if (isAuth){  // если зареган - переправляем нав страницу с TODO листами
-    return <Navigate to="/tmenu"/>;
+    return <Navigate to="/todolists"/>;
   }
 
   return (

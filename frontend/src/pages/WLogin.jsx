@@ -42,7 +42,7 @@ const WReg = () => {
   };
 
   if (isAuth){  // если зареган - переправляем нав страницу с TODO листами
-    return <Navigate to="/tmenu"/>;
+    return <Navigate to="/todolists"/>;
   }
 
   return (
@@ -57,7 +57,7 @@ const WReg = () => {
           onFinish={onFinish}
           style={{ maxWidth: 1000 }}
           >
-          <h1 className='reg_color'>Welcome!</h1>
+          <h1 className='reg_color'>Login</h1>
           <Form.Item name="email" rules={[{ required: true }]}>
               <Input placeholder='E-mail'/>
           </Form.Item>

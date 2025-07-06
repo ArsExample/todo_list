@@ -12,7 +12,6 @@ import {
 } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
 
-import { fetchTlists } from '../redux/slices/tlists';
 
 
 const TMenu = (props) => {
@@ -33,9 +32,6 @@ const TMenu = (props) => {
   };
   return (
     <div style={{ width: 256 }}>
-      <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
       <Menu
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
