@@ -14,7 +14,7 @@
 
 .menu__name{
     margin-bottom: auto;
-    padding-top: 10px;
+    padding-top: 20px;
     font-size: 20px;
     line-height: 1;
     font-weight: 700px;
@@ -36,7 +36,7 @@
     display: flex;
     list-style-type: none;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 50px;
     padding-left: 0;
 }
 

@@ -19,7 +19,7 @@ const Menu = () => {
             <span className="menu__name">TODO lists</span>
             <nav className="menu__nav">
                 <ul className="menu__nav-list">
-                    {tlistsData?.map(c => (<li className='menu__nav-item' tabindex="1" onClick={event => {
+                    {tlistsData?.map(c => (<li className='menu__nav-item' tabIndex="1" onClick={event => {
                         console.log(c.name);
                         dispatch(updateTasks(c.tasks));
                     }} key={c._id}>{c.name}</li>))}
