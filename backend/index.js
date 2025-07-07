@@ -29,6 +29,7 @@ app.delete("/tlists/:id", TListController.removeOne);
 // дальше бога нет
 app.post("/tlists/:id", checkAuth, TListController.createTask);
 app.patch("/tlists/:id/:taskid", checkAuth, TListController.patchTask);
+app.delete("/tlists/:id/:taskid", checkAuth, TListController.removeTask);
 
 app.get("/testlists", TListController.testGetAll)
 
