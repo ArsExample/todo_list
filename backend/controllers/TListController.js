@@ -60,7 +60,7 @@ export const removeOne = async (req, res) => {
     try{
         const todoListId = req.params.id;
 
-        TListModel.findOneAndDelete({_id: todoListId}).then((err, doc) => {
+        TListModel.findOneAndDelete({_id: todoListId}).then((doc, err) => {  // мб err, doc но вряд ли
             if (err){
                 console.log("error: ", err);
                 return res.status(500).json({
@@ -109,7 +109,7 @@ export const create = async (req, res) => {
 export const createTask = async (req, res) => { // пиздец че тут происходит
     try{
         const todoListId = req.params.id;
-        var tlist = await TListModel.findById(todoListId);
+        var tlist = await TListModel.findById(todoListId).populate("tasks");
 
         if (!tlist){
             return res.status(404).json({
@@ -152,7 +152,7 @@ export const patchTask = async (req, res) => { // ну сука пж научи�
     try{
         const todoListId = req.params.id;  // я хуй знает мб это и не надо
         const taskId = req.params.taskid;
-        //var tlist = await TListModel.findById(todoListId);
+        var tlist = await TListModel.findById(todoListId).populate("tasks");
         // парни только не упадите
         var _task = await TaskModel.findById(taskId);
 
@@ -169,7 +169,7 @@ export const patchTask = async (req, res) => { // ну сука пж научи�
 
         const task = await _task.save();
 
-        res.json({task});  // я правда не ебу че возвращать я просто хочу спать
+        res.json({tlist});  // я правда не ебу че возвращать я просто хочу спать
     } catch (err){
         console.log(err);
         res.status(500).json({
@@ -177,3 +177,33 @@ export const patchTask = async (req, res) => { // ну сука пж научи�
         });
     }
 };
+
+export const removeTask = async (req, res) => {
+    try{
+        const todoListId = req.params.id;
+        const taskId = req.params.taskid;
+
+        TaskModel.findOneAndDelete({_id: taskId}).then(async (doc, err) => {
+            if (err){
+                console.log("error: ", err);
+                return res.status(500).json({
+                    message: "Task delete error"
+                });
+            }
+
+            if (!doc){
+                return res.status(404).json({
+                    message: "Task not found"
+                });
+            }
+            const tlist = await TListModel.findById(todoListId).populate("tasks");
+
+            res.json({tlist});
+        });
+    } catch (err){
+        console.log(err);
+        res.status(500).json({
+            message: "task delete error",
+        });
+    }
+}
