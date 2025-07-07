@@ -7,6 +7,8 @@ import "./Menu2.css"
 const Menu2 = () => {
     const dispatch = useDispatch();
     const tlistsData = useSelector((state) => state.tlists.items);
+    var tasks = useSelector((state) => state.tasks.tasks); // во первых я написал var 2й раз в жизни (везде const) во вторых я не ебу строчка реально 
+    // у Иисуса Христа блять помощи просит и работает и главное ебать как работает
 
     useEffect(() => {
         dispatch(fetchTlists());
@@ -17,12 +19,7 @@ const Menu2 = () => {
         <header className="menu2">
             <nav className="b1">
                 <ul className="b2">
-                    {/* {tlistsData?.map(c => (<li className='menu__nav-item2' onClick={event => console.log(c.name)} key={c._id}>{c.name}</li>))} */}
-                    <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
-                    <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
-                    <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
-                    <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
-                    <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
+                     {tasks?.map(c => (<li className='menu__nav-item2' onClick={(e) => {/* тут пенис должен быть */}} key={c._id}>{c.name}</li>))} 
                 </ul>
             </nav>
         </header>   
@@ -31,3 +28,9 @@ const Menu2 = () => {
 }
 
 export default Menu2;
+
+                    // <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
+                    // <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
+                    // <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
+                    // <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>
+                    // <li className='b3' onClick={event => console.log(c.name)}>barabarabara bereberebere barabarabara bereberebere </li>

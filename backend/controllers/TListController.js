@@ -3,7 +3,7 @@ import TaskModel from "../models/Task.js"
 
 export const getAll = async (req, res) => {
     try {
-        const tlists = await TListModel.find({creator: req.userId});
+        const tlists = await TListModel.find({creator: req.userId}).populate("tasks");
 
         res.json(tlists);
     } catch (err){

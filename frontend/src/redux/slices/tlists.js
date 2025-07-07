@@ -9,7 +9,7 @@ export const fetchTlists = createAsyncThunk("tlists/fetchTlists", async () => {
 const initialState = {
     tlists: {
         items: [],
-        status: "loading"
+        status: "loading"  // че ты блять лоадинг 
     } // наверное сюда через запятую задачи сделаю
 };
 
