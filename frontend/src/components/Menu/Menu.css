@@ -1,13 +1,15 @@
 .menu {
     position: absolute;
+    border: 2px solid rgb(66, 66, 66);
     left: 0;
     top: 40px;
     display: flex;
+    border-radius: 20px;
     align-items: center;
     width: 160px;
     padding: 0 20px;
-    height: 100%;
-    background-color: rgb(73, 73, 73);
+    height: 94%;
+    background-color: rgb(36, 36, 36);
 }
 
 .menu__name{
@@ -16,7 +18,7 @@
     font-size: 20px;
     line-height: 1;
     font-weight: 700px;
-    color: rgb(255, 255, 255);
+    color: rgb(99, 204, 204);
 }
 
 .menu__nav{
@@ -25,7 +27,7 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 220px;
+    width: 200px;
     height: 100%;
 }
 
@@ -34,12 +36,16 @@
     display: flex;
     list-style-type: none;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding-top: 40px;
+    padding-left: 0;
 }
 
 .menu__nav-item{
-    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin: 10px 0;
+    height: 40px;
     font-weight: 500;
     font-size: 20px;
     line-height: 1;
@@ -47,6 +53,8 @@
 }
 
 .menu__nav-item:hover{
-    color: rgb(175, 175, 175);
+    background-color: rgb(43, 43, 43);
     transition: 0.2s;
 }
+
+.menu__nav-item:focus { background-color: rgb(43, 43, 43) }

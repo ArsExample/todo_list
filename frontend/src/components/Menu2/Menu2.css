@@ -1,13 +1,15 @@
-.menu2 {
+.b0 {
     position: absolute;
+    border: 2px solid rgb(66, 66, 66);
     left: 240px;  
     top: 40px;
     display: flex;
+    border-radius: 10px;
     align-items: center;
-    width: 100%;
+    width: 80%;
     padding: 0 20px;
-    height: 100%;
-    background-color: rgb(42, 42, 42);
+    height: 94%;
+    background-color: rgb(36, 36, 36);  
 }
 
 .b1{
@@ -16,7 +18,7 @@
     left: 240px;  
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 82.5%;
     height: 100%;
 }
 
@@ -26,11 +28,15 @@
     list-style-type: none;
     flex-direction: column;
     padding-top: 20px;
-    padding-left: 20px;
+    padding-left: 0;
 }
 
 .b3{
-    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin: 10px 0;
+    height: 40px;
     font-weight: 500;
     font-size: 20px;
     line-height: 1;
@@ -38,6 +44,6 @@
 }
 
 .b3:hover{
-    color: rgb(175, 175, 175);
+    background-color: rgb(43, 43, 43);
     transition: 0.2s;
 }

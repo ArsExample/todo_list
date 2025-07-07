@@ -8,7 +8,8 @@ function TODOlists(){
     return(
         <>
             <header className='header'>
-                <Link to="/" className='link'>Домой</Link>
+                <Link to="/" className='linkH'>Домой</Link>
+                <Link to="/" className='linkLK'>Личный кабинет</Link>
             </header>
             <Menu />
             <Menu2 />

@@ -16,10 +16,10 @@ const Menu2 = () => {
 
     
     return (
-        <header className="menu2">
+        <header className="b0">
             <nav className="b1">
                 <ul className="b2">
-                     {tasks?.map(c => (<li className='menu__nav-item2' onClick={(e) => {/* тут пенис должен быть */}} key={c._id}>{c.name}</li>))} 
+                     {tasks?.map(c => (<li className='b3' onClick={(e) => {/* тут пенис должен быть */}} key={c._id}>{c.name}</li>))} 
                 </ul>
             </nav>
         </header>   
