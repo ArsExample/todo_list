@@ -48,6 +48,11 @@
     transition: 0.2s;
 }
 
+.b3:focus{
+    text-decoration: line-through;
+    transition: 0.2s;
+}
+
 .new_task{
   position: relative;
   left: 20px;

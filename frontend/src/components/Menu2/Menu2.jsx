@@ -14,14 +14,20 @@ const Menu2 = () => {
         dispatch(fetchTlists());
     }, [])
 
+        
+    const clicked = () => { 
+        if (Ifclicked == true) { tabIndex="1" } 
+        else { tabIndex="0" }
+    }
     
     return (
         <div>
+
             <header className="b0">
                 <nav className="b1">
                     <ul className="b2">
                         <button className='new_task' onClick={event => {console.log("1")}}>New task</button>
-                        {tasks?.map(c => (<li className='b3' onClick={(e) => {/* тут пенис должен быть */}} key={c._id}>{c.name}</li>))} 
+                        {tasks?.map(c => (<li className='b3' onClick={event => {!Ifclicked, (e) => {/* тут пенис должен быть */}}} key={c._id}>{c.name}</li>))} 
                     </ul>
                 </nav>
             </header>   
