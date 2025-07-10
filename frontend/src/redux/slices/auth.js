@@ -24,6 +24,12 @@ const initialState = {
 const authSlice = createSlice({
     name: "auth",
     initialState,
+    reducers: { 
+        logout: (state) => {
+            state.data = null;
+            state.status = "loading";
+        },
+    },
     extraReducers: builder => {
         builder.addCase(fetchAuth.pending, (state) => {
             state.status = "loading"
@@ -68,5 +74,7 @@ const authSlice = createSlice({
 });
 
 export const selectIsAuth = state => Boolean(state.auth.data);  // селектор который возвращает авторизован ли пользователь
+
+export const { logout } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
