@@ -35,23 +35,21 @@ body{
   font-style: normal;
 }
 
-.header{
+.vremenno{
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 40%;
+  top: 40%;
+  width: 160px;
+  height: 50px;
   display: flex;
   align-items: center;
-  width: 96%;
-  padding: 0 20px;
-  height: 5%;
-  background-color: rgb(36, 36, 36);
+  flex-direction: column;
+  border: 2px solid rgb(66, 66, 66);
+  background-color: #000000;
+  border-radius: 20px;
 }
 
-.linkH{
-  color: rgb(65, 149, 155);
-}
-
-.linkLK{
-  padding-left: 20px;
-  color: rgb(65, 149, 155);
+.fon_akashi{
+  width: 100%;
+  height: 100%;
 }
