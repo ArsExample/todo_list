@@ -6,9 +6,12 @@ import './Task.css'
 function Task(){
     var tasks = useSelector((state) => state.tasks.tasks);
 
+    
+
     return(
         <>
-            {tasks?.map(c => (<li className='t1' onClick={event => {console.log("1") ,(e) => {/* тут пенис должен быть */}}} key={c._id}>
+            {tasks?.map(c => (<li className='t1' onClick={event => 
+            {console.log(c.name) ,(e) => { c.complited = !c.complited }}} key={c._id}> 
                 {c.name}
                 <button className='t2'> </button>
             </li>))}
