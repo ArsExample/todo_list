@@ -31,28 +31,6 @@
     padding-left: 0;
 }
 
-.b3{
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    margin: 0px 0;
-    height: 40px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1;
-    color: white;
-}
-
-.b3:hover{
-    background-color: rgb(43, 43, 43);
-    transition: 0.2s;
-}
-
-.b3:focus{
-    text-decoration: line-through;
-    transition: 0.2s;
-}
-
 .new_task{
   position: relative;
   left: 20px;
