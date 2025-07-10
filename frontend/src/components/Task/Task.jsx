@@ -10,8 +10,8 @@ function Task(){
 
     return(
         <>
-            {tasks?.map(c => (<li className='t1' onClick={event => 
-            {console.log(c.name) ,(e) => { c.complited = !c.complited }}} key={c._id}> 
+            {tasks?.map(c => (<li className={c.completed ? "t1p" : "t1"} onClick={event => 
+            {console.log(c.name, c.completed) ,(e) => { c.completed = !c.completed }}} key={c._id}> 
                 {c.name}
                 <button className='t2'> </button>
             </li>))}
