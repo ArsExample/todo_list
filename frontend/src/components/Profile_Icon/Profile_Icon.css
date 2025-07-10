@@ -1,0 +1,10 @@
+.icon{
+    position: absolute;
+    right: 5%;
+}
+
+.icon_akashi{
+    position: relative;
+    height: 40px;
+    border-radius: 50%;
+}

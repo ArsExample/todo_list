@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom"
 import React from 'react';
+import Profile_Icon from '../Profile_Icon/Profile_Icon.jsx'
 import './Header.css'
 
 const Header = (props) => {
@@ -17,6 +18,7 @@ const Header = (props) => {
                         ЛК
                     </h1>
                 </Link> */}
+                <Profile_Icon></Profile_Icon>
             </header>
         </>
     )
