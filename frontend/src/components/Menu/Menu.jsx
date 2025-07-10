@@ -21,7 +21,7 @@ const Menu = () => {
                 <ul className="menu__nav-list">
                     {tlistsData?.map(c => (<li className='menu__nav-item' tabIndex="1" onClick={event => {
                         console.log(c.name);
-                        dispatch(updateTasks(c.tasks));
+                        dispatch(updateTasks({tasks: c.tasks, tasklistId: c._id}));
                     }} key={c._id}>{c.name}</li>))}
                 </ul>
             </nav>
