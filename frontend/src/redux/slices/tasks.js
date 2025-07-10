@@ -3,17 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "../../axios"
 
 export const patchTask = createAsyncThunk("tasks/patchTask", async (params) => { // params -> tlistId (+), taskId (+), taskName, taskCompleted (+)
-    console.log(params);
-    try {
-        const { data } = await axios.patch(`/tlists/${params.tlistId}/${params.taskId}`, 
-        {
-            task_name: params.taskName, 
-            task_completed: params.taskCompleted
-        });
+    const { data } = await axios.patch(`/tlists/${params.tlistId}/${params.taskId}`, 
+    {
+        task_name: params.taskName, 
+        task_completed: params.taskCompleted
+    });
     return data;
-    } catch (error) {
-        console.log(error);
-    }
     
 });
 

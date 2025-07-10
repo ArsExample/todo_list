@@ -152,7 +152,6 @@ export const patchTask = async (req, res) => { // ну сука пж научи�
     try{
         const todoListId = req.params.id;  // я хуй знает мб это и не надо
         const taskId = req.params.taskid;
-        var tlist = await TListModel.findById(todoListId).populate("tasks");
         // парни только не упадите
         var _task = await TaskModel.findById(taskId);
 
@@ -168,6 +167,7 @@ export const patchTask = async (req, res) => { // ну сука пж научи�
 
 
         const task = await _task.save();
+        var tlist = await TListModel.findById(todoListId).populate("tasks");
 
         res.json({tlist});  // я правда не ебу че возвращать я просто хочу спать
     } catch (err){

@@ -16,15 +16,12 @@ function Task(){
             {tasks?.map(c => (
                 <li className={c.completed ? "t1p" : "t1"} onClick={async event => 
                         {
-                            console.log("initial:", c.name, c.completed);
                             const data = await dispatch(patchTask({
                                 tlistId: tlistId,
                                 taskId: c._id,
                                 taskName: c.name, // переименование сюда
                                 taskCompleted: !c.completed,
                             })); 
-                            dispatch(fetchTlists());
-                            console.log("updated:", c.name, c.completed);
                         }} key={c._id}> 
                     {c.name}
                     <button className='t2'> </button>
