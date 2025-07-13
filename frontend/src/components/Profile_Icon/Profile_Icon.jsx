@@ -4,7 +4,7 @@ import { Dropdown, message, Space } from 'antd';
 import icon from '../../../../assets/Absolut.jpg'
 import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-
+import ModalRegLog from '../ModalRegLog/ModalRegLog';
 import { logout } from "../../redux/slices/auth"
 
 import './Profile_Icon.css'
@@ -15,7 +15,7 @@ const Profile_Icon = () => {
   const onClick = ({ key }) => {
 
     if (key == 1){
-
+      
     }
     if (key == 2){
       console.log("съебался в страхе")
@@ -24,7 +24,7 @@ const Profile_Icon = () => {
 
   const items = [
     {
-      label: <Link to="/login">TODOLists</Link>,
+      label: <ModalRegLog></ModalRegLog>,
       key: '1',
     },
     {
