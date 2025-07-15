@@ -11,6 +11,11 @@ import {
   Row,
   Select,
 } from 'antd';
+
+import { fetchAuth, selectIsAuth } from "../redux/slices/auth";
+import {useDispatch, useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
+
 const { Option } = Select;
 const residences = [
   {
@@ -71,16 +76,30 @@ const tailFormItemLayout = {
 
 const WReg = () => {
   const [form] = Form.useForm();
-  const onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
+
+  const isAuth = useSelector(selectIsAuth); // все пояснения в логине посмотри, там аналогично
+  const dispatch = useDispatch(); 
+
+const onFinish = async (values) => {
+  // console.log(values);
+  const data = await dispatch(fetchRegistration(values));
+
+  if (!data.payload) {
+    alert("Не удалось зарегестрироваться");
+  }
+
+  if ("token" in data.payload){
+    window.localStorage.setItem("token", data.payload.token);
+  }
+};
+
+const prefixSelector = (
+  <Form.Item name="prefix" noStyle>
+    <Select style={{ width: 70 }}>
+      <Option value="86">+86</Option>
+      <Option value="87">+87</Option>
+    </Select>
+  </Form.Item>
   );
   const suffixSelector = (
     <Form.Item name="suffix" noStyle>
@@ -102,6 +121,10 @@ const WReg = () => {
     label: website,
     value: website,
   }));
+
+  if (isAuth){  // если зареган - переправляем нав страницу с TODO листами
+    return <Navigate to="/tmenu"/>;
+  }
 
   return (
     <Form

@@ -11,7 +11,13 @@ import {
   Row,
   Select,
 } from 'antd';
+
+import { fetchAuth, selectIsAuth } from "../redux/slices/auth";
+import {useDispatch, useSelector} from "react-redux"
+import {Navigate} from "react-router-dom"
+
 const { Option } = Select;
+
 const residences = [
   {
     value: 'zhejiang',
@@ -46,6 +52,7 @@ const residences = [
     ],
   },
 ];
+
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -56,6 +63,7 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 };
+
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -71,9 +79,24 @@ const tailFormItemLayout = {
 
 const WLogin = () => {
   const [form] = Form.useForm();
-  const onFinish = values => {
-    console.log('Received values of form: ', values);
+  
+  // подключаем redux 
+  const isAuth = useSelector(selectIsAuth); 
+  const dispatch = useDispatch(); //я без понятия, что это за 2 строчки, но вроде связаны с редуксом
+
+  const onFinish = async (values) => {
+    console.log(values)
+    const data = await dispatch(fetchAuth(values)); // отправляем логин пароль на бэк
+
+    if (!data.payload) {
+      alert("Не удалось авторизоваться"); // если бэк сказал что нет пользователя
+    }
+
+    if ("token" in data.payload){
+      window.localStorage.setItem("token", data.payload.token); // если есть пользователь - добавляем токен в локальное хранилище
+    }
   };
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select style={{ width: 70 }}>
@@ -90,6 +113,7 @@ const WLogin = () => {
       </Select>
     </Form.Item>
   );
+
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
   const onWebsiteChange = value => {
     if (!value) {
@@ -103,6 +127,11 @@ const WLogin = () => {
     value: website,
   }));
 
+  if (isAuth){  // если зареган - переправляем нав страницу с TODO листами
+    console.log("zxczxczxc")
+    return <Navigate to="/todolists"/>;
+  }
+
   return (
     <Form
       {...formItemLayout}
@@ -115,7 +144,7 @@ const WLogin = () => {
     >
       <Form.Item
         name="email"
-        label="E-mail"
+        label="Login"
         rules={[
           {
             type: 'email',

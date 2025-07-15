@@ -57,4 +57,4 @@
     transition: 0.2s;
 }
 
-.menu__nav-item:focus { background-color: rgb(43, 43, 43) }
+.menu__nav-item:active { background-color: rgb(29, 103, 104); transition: 0.2s;}
