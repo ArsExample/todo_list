@@ -53,8 +53,20 @@
 }
 
 .menu__nav-item:hover{
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(49, 49, 49);
     transition: 0.2s;
 }
 
-.menu__nav-item:active { background-color: rgb(29, 103, 104); transition: 0.2s;}
+.menu__nav-item_plus{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin: 10px 0;
+    height: 40px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    color: white;
+    background-color: rgb(49, 49, 49);
+}
+

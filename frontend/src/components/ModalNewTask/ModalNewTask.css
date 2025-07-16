@@ -1,0 +1,6 @@
+.modalbutton{
+    position: relative;
+    left: 20px;
+    background-color: rgb(49, 49, 49);
+    color: rgb(99, 204, 204);
+}
