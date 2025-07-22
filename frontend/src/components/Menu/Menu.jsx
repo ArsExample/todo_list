@@ -5,6 +5,8 @@ import { fetchTlists } from '../../redux/slices/tlists';
 import { updateTasks } from "../../redux/slices/tasks"
 
 import "./Menu.css"
+import ModalNewList from '../ModalNewList/ModalNewList';
+import ModalEditList from '../ModalEditList/ModalEditList';
 
 const Menu = (props) => {
     const dispatch = useDispatch();
@@ -19,10 +21,16 @@ const Menu = (props) => {
         <header className="menu">
             <span className="menu__name">TODO lists</span>
             <nav className="menu__nav">
+                <ModalNewList/>
                 <ul className="menu__nav-list">
-                    {tlistsData?.map(c => (<li className={props.name == c.name ? "menu__nav-item_plus" : 'menu__nav-item'} onClick={event => {
+                    {tlistsData?.map(c => (
+                        <li className={props.name == c.name ? "menu__nav-item_plus" : 'menu__nav-item'} onClick={event => {
                         dispatch(updateTasks({tasks: c.tasks, tasklistId: c._id, tasklistname: c.name}));
-                    }} key={c._id}>{c.name}</li>))}
+                        }} key={c._id}>
+                            {c.name}
+                            <ModalEditList/>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </header>   

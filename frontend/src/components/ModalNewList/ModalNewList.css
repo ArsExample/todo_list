@@ -1,11 +1,12 @@
-.modalbutton{
+.modalbuttonlist{
     position: relative;
     left: 20px;
+    top: 50px;
     background-color: rgb(73, 73, 73);
     color: rgb(99, 204, 204);
 }
 
 .new__name{
-    position: relative;
+    position: absolute;
     left: 25%; 
 }

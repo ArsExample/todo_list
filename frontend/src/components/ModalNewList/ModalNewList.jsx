@@ -7,13 +7,10 @@ import {
   ConfigProvider,
   Modal,
   Space,
-  Popconfirm,
-  message,
 } from 'antd';
-import {EditOutlined} from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux"
 
-import './ModalEditTask.css'
+import './ModalNewList.css'
 
 const useStyle = createStyles(({ token }) => ({
   'my-modal-body': {
@@ -34,7 +31,7 @@ const useStyle = createStyles(({ token }) => ({
   },
 }));
 
-const ModalEditTask = (props) => {
+const ModalNewList = () => {
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -72,8 +69,6 @@ const ModalEditTask = (props) => {
     },
   };
 
-    const tasksData = useSelector((state) => state.tasks); // нихуя не работает
-
     const tailFormItemLayout = {
         wrapperCol: {
             xs: {
@@ -88,24 +83,14 @@ const ModalEditTask = (props) => {
     };
 
     const onFinish = (values) => {
-      
-      console.log(values) //, tasksData.tasks[  ].completed
-    };
-
-    const confirm = e => { // вот здесь ебашить вывод значений при подтверждении удаления 
-      console.log('удалено')
-      console.log() //здесь название листа и таска должно быть (или id?)
-      toggleModal(0, false) // закрытие окна
-    };
-    const cancel = e => {
-      console.log('не удалено')
+        console.log(values)
     };
 
     return (
         <>
         <Space>
-            <Button type="primary" onClick={() => toggleModal(0, true)} className='modalbutton'>
-              <EditOutlined/>
+            <Button type="primary" onClick={() => toggleModal(0, true)} className='modalbuttonlist'>
+            New List
             </Button>
         </Space>
         <Modal
@@ -120,7 +105,7 @@ const ModalEditTask = (props) => {
 
 
             <>
-                <h1 className='name'>Edit Task</h1>
+                <h1 className='new__name'>Create New List</h1>
                 <Form
                 name="layout-multiple-vertical"
                 layout="vertical"
@@ -129,23 +114,12 @@ const ModalEditTask = (props) => {
                 wrapperCol={{ span: 20 }}
                 className='form'
                 >
-                  <Form.Item label={<b2 className='input__text'>New task's name</b2>} name="task name" rules={[{ required: true }]}>
+                  <Form.Item label={<b2 className='input__text'>list name</b2>} name="list name" rules={[{ required: true }]}>
                       <Input />
                   </Form.Item>
-                  <Form.Item {...tailFormItemLayout}>
-                      <Button type="primary" htmlType="submit" onSubmit={() => toggleModal(0, false)} className='submit'> Submit </Button>
-                      
-                      <Popconfirm
-                        title="Delete the task"
-                        description="Are you sure to delete this task?"
-                        onConfirm={confirm}
-                        onCancel={cancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Button danger className='delete'>Delete</Button>
-                      </Popconfirm>
-                  </Form.Item>
+                <Form.Item {...tailFormItemLayout}>
+                    <Button type="primary" htmlType="submit" onClick={() => toggleModal(0, false)}> Submit </Button>
+                </Form.Item>
                 </Form>
             </>
 
@@ -156,4 +130,4 @@ const ModalEditTask = (props) => {
         </>
   );
 };
-export default ModalEditTask;
+export default ModalNewList;
