@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchTlists } from '../../redux/slices/tlists';
 import { patchTask } from "../../redux/slices/tasks"
 
+import ModalEditTask from '../ModalEditTask/ModalEditTask';
+
 import './Task.css'
 
 function Task(){
@@ -18,14 +20,14 @@ function Task(){
                         {
                             const data = await dispatch(patchTask({
                                 tlistId: tlistId,
-                                taskId: c._id,
+                                taskId: c._id, 
                                 taskName: c.name, // переименование сюда
                                 taskCompleted: !c.completed,
                             })); 
                         }} key={c._id}> 
-                    {c.name}
-                    <button className='t2'> </button>
-            </li>))}
+                    {c.name} 
+                    <ModalEditTask> {c.name} </ModalEditTask>
+                </li>))}
         </>
     )
 }

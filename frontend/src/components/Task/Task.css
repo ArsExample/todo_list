@@ -35,13 +35,6 @@
 
   display: flex;
   align-items: center;
-  width: 20px;
-  height: 20px;
-  background-color: rgb(255, 0, 0);
-  color: rgb(91, 3, 3);
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 1;   
 }
 
 .t2:active{

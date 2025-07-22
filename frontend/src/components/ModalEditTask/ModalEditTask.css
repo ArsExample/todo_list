@@ -1,0 +1,27 @@
+.form{
+    position: relative;
+    left: 40px;
+}
+
+.name{
+    position: relative;
+    left: 35%; 
+}
+
+.input__text{
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.submit{
+    position: relative;
+    right: 160px;
+}
+
+.delete{
+    position: relative;
+    right: 150px;
+}

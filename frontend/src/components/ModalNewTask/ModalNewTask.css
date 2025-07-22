@@ -4,3 +4,8 @@
     background-color: rgb(49, 49, 49);
     color: rgb(99, 204, 204);
 }
+
+.new__name{
+    position: relative;
+    left: 25%; 
+}

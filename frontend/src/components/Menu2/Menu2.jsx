@@ -13,7 +13,6 @@ const Menu2 = () => {
     // у Иисуса Христа блять помощи просит и работает и главное ебать как работает
 
      const tasksData = useSelector((state) => state.tasks);
-     console.log(tasksData)
 
     useEffect(() => {
         dispatch(fetchTlists());
