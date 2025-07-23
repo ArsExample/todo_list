@@ -90,8 +90,7 @@ const ModalEditList = (props) => {
     };
 
     const confirm = e => { // вот здесь ебашить вывод значений при подтверждении удаления 
-      console.log('удалено')
-      console.log() //здесь название листа и таска должно быть (или id?)
+      console.log(props.children[1]) //здесь название листа и таска должно быть (или id?)
       toggleModal(0, false) // закрытие окна
     };
     const cancel = e => {

@@ -26,7 +26,7 @@ function Task(){
                             })); 
                         }} key={c._id}> 
                     {c.name} 
-                    <ModalEditTask> {c.name} </ModalEditTask>
+                    <ModalEditTask> {c._id} </ModalEditTask>
                 </li>))}
         </>
     )

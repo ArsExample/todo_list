@@ -28,7 +28,7 @@ const Menu = (props) => {
                         dispatch(updateTasks({tasks: c.tasks, tasklistId: c._id, tasklistname: c.name}));
                         }} key={c._id}>
                             {c.name}
-                            <ModalEditList/>
+                            <ModalEditList> {c._id} </ModalEditList>
                         </li>
                     ))}
                 </ul>
