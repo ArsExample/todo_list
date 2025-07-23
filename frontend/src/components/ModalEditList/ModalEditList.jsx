@@ -12,6 +12,10 @@ import {
 } from 'antd';
 import {EditOutlined} from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux"
+import axios from "../../axios"
+
+import { fetchTlists } from "../../redux/slices/tlists"
+
 
 import './ModalEditList.css'
 
@@ -35,6 +39,8 @@ const useStyle = createStyles(({ token }) => ({
 }));
 
 const ModalEditList = (props) => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -85,12 +91,18 @@ const ModalEditList = (props) => {
         },
     };
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
       console.log(values)
+      console.log("123")
+      //await axios.post("/tlists", values);
+      dispatch(fetchTlists());
     };
 
-    const confirm = e => { // вот здесь ебашить вывод значений при подтверждении удаления 
+    const confirm = async e => { // вот здесь ебашить вывод значений при подтверждении удаления 
       console.log(props.children[1]) //здесь название листа и таска должно быть (или id?)
+      const {data} = await axios.delete(`/tlists/${props.children[1]}`);
+      console.log(data)
+      dispatch(fetchTlists());
       toggleModal(0, false) // закрытие окна
     };
     const cancel = e => {
@@ -125,7 +137,7 @@ const ModalEditList = (props) => {
                 wrapperCol={{ span: 20 }}
                 className='form'
                 >
-                  <Form.Item label={<b2 className='input__text'>New list name</b2>} name="list name" rules={[{ required: true }]}>
+                  <Form.Item label={<b2 className='input__text'>New list name</b2>} name="name" rules={[{ required: true }]}>
                       <Input />
                   </Form.Item>
                   <Form.Item {...tailFormItemLayout}>

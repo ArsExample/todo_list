@@ -12,6 +12,9 @@ import {
 } from 'antd';
 import {EditOutlined} from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux"
+import { updateTasks } from "../../redux/slices/tasks.js"
+
+import axios from "../../axios"
 
 import './ModalEditTask.css'
 
@@ -35,6 +38,8 @@ const useStyle = createStyles(({ token }) => ({
 }));
 
 const ModalEditTask = (props) => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -87,13 +92,18 @@ const ModalEditTask = (props) => {
         },
     };
 
-    const onFinish = (values) => {
-      
-      console.log(values) //, tasksData.tasks[  ].completed
+    const onFinish = async (values) => {
+      const params = {"task_name": values.task_name, "task_completed": false};
+      const {data} = await axios.patch(`/tlists/${tasksData.tlistId}/${props.children[1]}`, params);
+      dispatch(updateTasks({tasks: data.tlist.tasks, tasklistId: data.tlist._id, tasklistname: data.tlist.name}));
+      toggleModal(0, false) // закрытие окна
     };
 
-    const confirm = e => { // вот здесь ебашить вывод значений при подтверждении удаления 
+    const confirm = async e => { // вот здесь ебашить вывод значений при подтверждении удаления 
       console.log(tasksData.tlistId, props.children[1]) //здесь название листа и таска должно быть (или id?)
+
+      const {data} = await axios.delete(`/tlists/${tasksData.tlistId}/${props.children[1]}`);
+      dispatch(updateTasks({tasks: data.tlist.tasks, tasklistId: data.tlist._id, tasklistname: data.tlist.name}));
       toggleModal(0, false) // закрытие окна
     };
     const cancel = e => {
@@ -128,7 +138,7 @@ const ModalEditTask = (props) => {
                 wrapperCol={{ span: 20 }}
                 className='form'
                 >
-                  <Form.Item label={<b2 className='input__text'>New task's name</b2>} name="task name" rules={[{ required: true }]}>
+                  <Form.Item label={<b2 className='input__text'>New task's name</b2>} name="task_name" rules={[{ required: true }]}>
                       <Input />
                   </Form.Item>
                   <Form.Item {...tailFormItemLayout}>
