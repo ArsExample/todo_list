@@ -9,6 +9,9 @@ import {
   Space,
 } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
+import { updateTasks } from "../../redux/slices/tasks.js"
+
+import axios from "../../axios"
 
 import './ModalNewTask.css'
 
@@ -32,6 +35,8 @@ const useStyle = createStyles(({ token }) => ({
 }));
 
 const ModalNewTask = () => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -69,7 +74,7 @@ const ModalNewTask = () => {
     },
   };
 
-    const tasksData = useSelector((state) => state.tasks); // нихуя не работает
+    const tasksData = useSelector((state) => state.tasks); // нихуя не работает (уже работает)
 
     const tailFormItemLayout = {
         wrapperCol: {
@@ -84,8 +89,11 @@ const ModalNewTask = () => {
         },
     };
 
-    const onFinish = (values) => {
-        console.log(values, tasksData.tlistname)
+    const onFinish = async (values) => {
+        //console.log(values, tasksData.tlistname)
+        const params = {"task_name": values.task_name, "task_completed": false};
+        const {data} = await axios.post(`/tlists/${tasksData.tlistId}`, params);
+        dispatch(updateTasks({tasks: data.tlist.tasks, tasklistId: data.tlist._id, tasklistname: data.tlist.name}));
     };
 
     return (
@@ -116,7 +124,7 @@ const ModalNewTask = () => {
                 wrapperCol={{ span: 20 }}
                 className='form'
                 >
-                  <Form.Item label={<b2 className='input__text'>task name</b2>} name="task name" rules={[{ required: true }]}>
+                  <Form.Item label={<b2 className='input__text'>task name</b2>} name="task_name" rules={[{ required: true }]}>
                       <Input />
                   </Form.Item>
                 <Form.Item {...tailFormItemLayout}>

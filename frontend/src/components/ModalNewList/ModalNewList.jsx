@@ -9,6 +9,8 @@ import {
   Space,
 } from 'antd';
 import { useDispatch, useSelector } from "react-redux"
+import axios from "../../axios"
+import { fetchTlists } from "../../redux/slices/tlists"
 
 import './ModalNewList.css'
 
@@ -32,6 +34,8 @@ const useStyle = createStyles(({ token }) => ({
 }));
 
 const ModalNewList = () => {
+  const dispatch = useDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -82,8 +86,9 @@ const ModalNewList = () => {
         },
     };
 
-    const onFinish = (values) => {
-        console.log(values)
+    const onFinish = async (values) => {
+        await axios.post("/tlists", values);
+        dispatch(fetchTlists());
     };
 
     return (
@@ -114,7 +119,7 @@ const ModalNewList = () => {
                 wrapperCol={{ span: 20 }}
                 className='form'
                 >
-                  <Form.Item label={<b2 className='input__text'>list name</b2>} name="list name" rules={[{ required: true }]}>
+                  <Form.Item label={<b2 className='input__text'>list name</b2>} name="name" rules={[{ required: true }]}>
                       <Input />
                   </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
